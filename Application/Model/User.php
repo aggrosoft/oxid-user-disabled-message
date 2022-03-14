@@ -17,13 +17,13 @@ class User extends User_parent
     public function checkUserDisabled($userName)
     {
         $database = DatabaseProvider::getDb();
-        $userNameCondition = $this->formQueryPartForUserName($userName, $database);
+        $userNameCondition = 'oxuser.oxusername = ' . $database->quote($userName);
 
         $query = "SELECT `OXACTIVE`
                     FROM oxuser
                     WHERE 1
                     AND $userNameCondition
-                    AND `OXPASSWORD` != ''";
+                    AND oxuser.password != ''";
 
         $active = $database->getOne($query);
 
