@@ -19,16 +19,18 @@ class User extends User_parent
         $database = DatabaseProvider::getDb();
         $userNameCondition = 'oxuser.oxusername = ' . $database->quote($userName);
 
-        $query = "SELECT `OXACTIVE`
+        $query = "SELECT `OXID`, `OXACTIVE`
                     FROM oxuser
                     WHERE 1
                     AND $userNameCondition
                     AND oxuser.oxpassword != ''";
 
-        $active = $database->getOne($query);
+        $rs = $database->select($query);
 
-        if (!$active) {
-            throw oxNew(UserException::class, 'ERROR_MESSAGE_USER_DISABLED');
+        if ($rs != false && $rs->count() > 0) {
+            if ($rs->fields[0] && !$rs->fields[1]) {
+                throw new UserException('ERROR_MESSAGE_USER_DISABLED');
+            }
         }
     }
 }
