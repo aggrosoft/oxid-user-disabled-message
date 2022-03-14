@@ -23,7 +23,7 @@ class User extends User_parent
                     FROM oxuser
                     WHERE 1
                     AND $userNameCondition
-                    AND oxuser.password != ''";
+                    AND oxuser.oxpassword != ''";
 
         $active = $database->getOne($query);
 
