@@ -1,0 +1,24 @@
+{
+  "name": "aggrosoft/oxid-user-disabled-message",
+  "description": "Show descriptive message when user is disabled",
+  "type": "oxideshop-module",
+  "keywords": ["oxid", "modules", "eShop", "disabled", "message"],
+  "homepage": "https://github.com/aggrosoft/oxid-user-disabled-message",
+  "license": "MIT",
+  "extra": {
+    "oxideshop": {
+      "blacklist-filter": [
+        "documentation/**/*.*"
+      ],
+      "target-directory": "aguserdisabledmessage"
+    }
+  },
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Aggrosoft\\UserDisabledMessage\\": "../../../source/modules/aguserdisabledmessage"
+    }
+  }
+}
